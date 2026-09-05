@@ -8,26 +8,40 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // PLAN:
+        // 1. Create a new double array with a size equal to the
+        //    length provided to the function.
+        // 2. Use a for loop to go through each position in the array.
+        // 3. Since the first multiple should be the starting number,
+        //    multiply the number by the current index plus 1.
+        // 4. Store the calculated multiple in the corresponding
+        //    position in the array.
+        // 5. After the loop has finished, return the completed array.
 
-        return []; // replace this return statement with your own
+        double[] multiples = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            multiples[i] = number * (i + 1);
+        }
+
+        return multiples;
     }
-
-    /// <summary>
-    /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
-    /// List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9} and an amount is 3 then the list after the function runs should be 
-    /// List<int>{7, 8, 9, 1, 2, 3, 4, 5, 6}.  The value of amount will be in the range of 1 to data.Count, inclusive.
-    ///
-    /// Because a list is dynamic, this function will modify the existing data list rather than returning a new list.
-    /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // PLAN:
+        // 1. Calculate the index where the last 'amount' items begin.
+        // 2. Use GetRange() to copy the last 'amount' items into a temporary list.
+        // 3. Use RemoveRange() to remove those items from the original list.
+        // 4. Use InsertRange() at index 0 to put the saved items at the beginning.
+        // 5. The existing data list is now rotated to the right.
+
+        int startIndex = data.Count - amount;
+
+        List<int> lastItems = data.GetRange(startIndex, amount);
+
+        data.RemoveRange(startIndex, amount);
+
+        data.InsertRange(0, lastItems);
     }
 }
